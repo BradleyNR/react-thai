@@ -1,0 +1,36 @@
+body::after {
+  /*background-image: url(''../images/splashpage.jpg');*/
+}
+
+.splash-page {
+  text-align: center;
+  height: 250px;
+}
+
+.order-total-number {
+}
+
+.order-total-price {
+
+}
+
+.main-header {
+  background: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('../images/splashpage.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+h1.main-header-title {
+  text-align: center;
+  font-family: cursive;
+  color: white;
+  font-size: 130px;
+  text-shadow: -1px 0 black, 0 4px black, 4px 0 black, 0 -1px black;
+}
+
+.order-list {
+}
+
+.order-button {
+}
