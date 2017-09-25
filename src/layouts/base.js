@@ -2,7 +2,8 @@ import React from 'react';
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 import Homepage from '../components/Homepage.js';
-import SplashPage from '../components/SplashPage.js'
+import SplashPage from '../components/SplashPage.js';
+import OrderPage from '../components/OrderPage.js';
 
 function BaseLayout(props){
   return(
@@ -16,6 +17,7 @@ function BaseLayout(props){
         <main className='container'>
           <Route path='/' exact component={SplashPage} />
           <Route path='/menu' exact component={Homepage} />
+          <Route path='/orders' exact component={OrderPage} />
         </main>
       </div>
     </Router>

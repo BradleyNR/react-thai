@@ -16,6 +16,8 @@ let seedData = [
   {number: 12, title: 'Som tam pu', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 12.95}
 ];
 
+const BASE_URL = 'http://tiny-lasagna-server.herokuapp.com/collections/thai-orders';
+
 class Homepage extends Component{
   constructor(props){
     super(props);
@@ -24,7 +26,9 @@ class Homepage extends Component{
       orders: [],
       entrees: seedData,
       orderAmount: 0,
-      price: 0
+      price: 0,
+      name: '',
+      phone: ''
     }
   }
 
@@ -44,6 +48,37 @@ class Homepage extends Component{
     totalPrice += menuItem.price;
     this.setState({price: totalPrice})
     console.log(this.state.price);
+  }
+
+  placeOrder = (e) => {
+      e.preventDefault();
+    if (this.state.orders) {
+      let data = {name: this.state.name, phone: this.state.phone, total: this.state.price, order: this.state.orders}
+      fetch(BASE_URL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then((response) => {
+        return console.log(response);
+      });
+
+      this.setState({orders: [], name: '', phone: '', total: '', orderAmount: 0, price: 0})
+    }
+  }
+
+  updateName = (e) => {
+    e.preventDefault();
+    this.setState({name: e.target.value});
+    console.log(this.state.name);
+  }
+
+  updatePhone = (e) => {
+    e.preventDefault();
+    this.setState({phone: e.target.value});
+    console.log(this.state.phone);
   }
 
   render(){
@@ -66,7 +101,19 @@ class Homepage extends Component{
             <h2 className='order-total-number'>Cart: {this.state.orderAmount}</h2>
             <h2 className='order-total-price'>Total Price: ${this.state.price.toFixed([2])}</h2>
             <div className='order-list'>{orderList}</div>
-            <button className='btn btn-success'>Place Order</button>
+
+            <form className="form-inline" onSubmit={this.placeOrder}>
+              <div className="form-group">
+                <label className="sr-only" htmlFor="name">Name</label>
+                <input onChange={this.updateName} name='name' type="text" className="form-control" id="name" placeholder="Name" value={this.state.name} />
+              </div>
+              <div className="form-group">
+                <label className="sr-only" htmlFor="phonenumber">Phone Number</label>
+                <input onChange={this.updatePhone} name='phonenumber' type="text" className="form-control" id="phonenumber" placeholder="Phone Number" value={this.state.phone} />
+              </div>
+              <button type="submit" className="btn btn-primary col-md-12">Place Order!</button>
+            </form>
+
           </div>
           <div className='col-md-8'>{entreeItem}</div>
       </div>

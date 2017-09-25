@@ -19,7 +19,7 @@ class MenuItems extends Component{
         <div className='well col-md-6'>
 
           <p className='col-md-2'>#{this.props.number}:</p>
-          <p className='cold-md-8'>{this.props.title}</p>
+          <p className='cold-md-8 food-title'>{this.props.title}</p>
           <p>{this.props.description}</p>
           <p>${this.props.price}</p>
           <button onClick={this.addToOrder} className='btn btn-success'>Add To Order</button>

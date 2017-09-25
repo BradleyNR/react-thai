@@ -34,3 +34,9 @@ h1.main-header-title {
 
 .order-button {
 }
+
+div p.food-title {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: right;
+}
