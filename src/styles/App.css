@@ -1,5 +1,5 @@
-body::after {
-  /*background-image: url(''../images/splashpage.jpg');*/
+body {
+  background-color: #f3e5f5;
 }
 
 .splash-page {
@@ -7,10 +7,13 @@ body::after {
   height: 250px;
 }
 
-.order-total-number {
+.splash-title {
+  font-weight: bold;
 }
 
-.order-total-price {
+.splash-text {
+  margin: 50px auto 50px auto;
+  width: 70%;
 
 }
 
@@ -29,14 +32,34 @@ h1.main-header-title {
   text-shadow: -1px 0 black, 0 4px black, 4px 0 black, 0 -1px black;
 }
 
-.order-list {
+.main-content-area {
+  background-color: #FFFFFF;
 }
 
-.order-button {
+/*rel positioning for child elements*/
+.entry-box {
+  background-color: #f3e5f5;
+  height: 350px;
+  position: relative;
+}
+
+.price-and-button-container {
+  position: absolute;
+  width: 95%;
+  bottom: 0;
+  left: 15px;
 }
 
 div p.food-title {
   font-size: 22px;
   font-weight: bold;
   text-align: right;
+}
+
+.order-per-item {
+  background-color: #f3e5f5;
+}
+
+.tax {
+  border-bottom: 2px dotted black;
 }

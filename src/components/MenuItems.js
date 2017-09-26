@@ -16,14 +16,15 @@ class MenuItems extends Component{
 
   render(){
     return(
-        <div className='well col-md-6'>
+        <div className='well col-md-6 entry-box'>
 
           <p className='col-md-2'>#{this.props.number}:</p>
-          <p className='cold-md-8 food-title'>{this.props.title}</p>
+          <p className='col-md-10 food-title'>{this.props.title}</p>
           <p>{this.props.description}</p>
-          <p>${this.props.price}</p>
-          <button onClick={this.addToOrder} className='btn btn-success'>Add To Order</button>
-
+          <div className='row price-and-button-container'>
+            <p className='col-md-6'>${this.props.price}</p>
+            <button onClick={this.addToOrder} className='btn btn-success col-md-6'>Add To Order</button>
+          </div>
         </div>
     )
   }

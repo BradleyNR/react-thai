@@ -28,7 +28,9 @@ class Homepage extends Component{
       orderAmount: 0,
       price: 0,
       name: '',
-      phone: ''
+      phone: '',
+      tax: 0,
+      pricePlusTax: 0
     }
   }
 
@@ -46,14 +48,16 @@ class Homepage extends Component{
     //order const
     let totalPrice = this.state.price;
     totalPrice += menuItem.price;
-    this.setState({price: totalPrice})
+    let tax = totalPrice * 0.07
+    let pricePlusTax = totalPrice + tax;
+    this.setState({price: totalPrice, tax: tax, pricePlusTax: pricePlusTax})
     console.log(this.state.price);
   }
 
   placeOrder = (e) => {
       e.preventDefault();
     if (this.state.orders) {
-      let data = {name: this.state.name, phone: this.state.phone, total: this.state.price, order: this.state.orders}
+      let data = {name: this.state.name, phone: this.state.phone, total: this.state.pricePlusTax, order: this.state.orders}
       fetch(BASE_URL, {
         method: "POST",
         body: JSON.stringify(data),
@@ -90,16 +94,18 @@ class Homepage extends Component{
 
     let orderList = this.state.orders.map((item, index) => {
       return(
-        <p key={item.number} className='col-md-12 well'>{item.title} - {item.price}</p>
+        <p key={item.number} className='col-md-12 well order-per-item'>{item.title} - ${item.price}</p>
       )
     })
 
     return(
 
-      <div className='row jumbotron'>
+      <div className='row jumbotron main-content-area'>
           <div className='col-md-4'>
-            <h2 className='order-total-number'>Cart: {this.state.orderAmount}</h2>
-            <h2 className='order-total-price'>Total Price: ${this.state.price.toFixed([2])}</h2>
+            <h2 className='order-total-number'>Cart: {this.state.orderAmount} Item(s)</h2>
+            <h2 className='order-price'>Price: ${this.state.price.toFixed([2])}</h2>
+            <h4 className='tax'>Tax: ${this.state.tax.toFixed([2])}</h4>
+            <h2 className='total-price'>Total Price: ${this.state.pricePlusTax.toFixed([2])}</h2>
             <div className='order-list'>{orderList}</div>
 
             <form className="form-inline" onSubmit={this.placeOrder}>
