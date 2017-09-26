@@ -30,7 +30,8 @@ class Homepage extends Component{
       name: '',
       phone: '',
       tax: 0,
-      pricePlusTax: 0
+      pricePlusTax: 0,
+      orderMessage: null
     }
   }
 
@@ -55,8 +56,9 @@ class Homepage extends Component{
   }
 
   placeOrder = (e) => {
-      e.preventDefault();
-    if (this.state.orders) {
+    e.preventDefault();
+    //checking to se if at least one thing is in the orders
+    if (this.state.orders[0]) {
       let data = {name: this.state.name, phone: this.state.phone, total: this.state.pricePlusTax, order: this.state.orders}
       fetch(BASE_URL, {
         method: "POST",
@@ -69,8 +71,12 @@ class Homepage extends Component{
         return console.log(response);
       });
 
-      this.setState({orders: [], name: '', phone: '', total: '', orderAmount: 0, price: 0})
+      this.setState({orders: [], name: '', phone: '', total: '', orderAmount: 0, price: 0, tax: 0, pricePlusTax: 0, orderMessage: 'Your order has been placed!'})
     }
+
+    setTimeout(() => {
+      this.setState({orderMessage: null})
+    }, 5000);
   }
 
   updateName = (e) => {
@@ -106,6 +112,7 @@ class Homepage extends Component{
             <h2 className='order-price'>Price: ${this.state.price.toFixed([2])}</h2>
             <h4 className='tax'>Tax: ${this.state.tax.toFixed([2])}</h4>
             <h2 className='total-price'>Total Price: ${this.state.pricePlusTax.toFixed([2])}</h2>
+            {this.state.orderMessage ? <p>{this.state.orderMessage}</p> : null}
             <div className='order-list'>{orderList}</div>
 
             <form className="form-inline" onSubmit={this.placeOrder}>
