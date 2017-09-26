@@ -15,9 +15,9 @@ function BaseLayout(props){
 
 
         <main className='container'>
-          <Route path='/' exact component={SplashPage} />
-          <Route path='/menu' exact component={Homepage} />
-          <Route path='/orders' exact component={OrderPage} />
+          <Route path='/react-thai/' exact component={SplashPage} />
+          <Route path='/react-thai/menu' exact component={Homepage} />
+          <Route path='/react-thai/orders' exact component={OrderPage} />
         </main>
       </div>
     </Router>
