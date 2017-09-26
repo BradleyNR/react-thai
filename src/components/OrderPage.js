@@ -46,14 +46,14 @@ class OrderPage extends Component{
       let uniqueId = order._id;
       // mapping over array of ordered food in each object from the database
       let dishList = order.order.map((object, index) => {
-        return <p className='col-md-12 well'>{object.title} - {object.price}</p>
+        return <p className='col-md-6 well'>{object.title} - {object.price}</p>
       });
       return(
-        <div key={order._id} className='well col-md-5 col-md-offset-1'>
+        <div key={order._id} className='well col-md-6 order-item-backend'>
 
-          <p className='col-md-6'>Phone: {order.phone}</p>
-          <p className='col-md-6'>For: {order.name}</p>
-          {dishList}
+          <p className='col-md-6 order-text'>Phone: {order.phone}</p>
+          <p className='col-md-6 order-text'>For: {order.name}</p>
+          <div className='col-md-12'>{dishList}</div>
           <p className='col-md-12'>Order Total: ${order.total.toFixed([2])}</p>
           <a onClick={this.deleteOrder.bind(this, uniqueId)} className='btn btn-danger'>Delete</a>
         </div>
@@ -63,7 +63,7 @@ class OrderPage extends Component{
     return(
       <div>
         <h1>Orders</h1>
-        <div className='row'>
+        <div className='row order-item-backend'>
           {orderList}
         </div>
       </div>

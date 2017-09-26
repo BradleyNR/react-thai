@@ -63,3 +63,11 @@ div p.food-title {
 .tax {
   border-bottom: 2px dotted black;
 }
+
+.order-item-backend {
+  height: 600px;
+}
+
+.order-text {
+  font-size: 20px;
+}
