@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
 import MenuItems from './MenuItems.js'
-
-let seedData = [
-  {number: 1, title: 'Pad Thai', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 9.95},
-  {number: 2, title: 'Massaman Curry', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 12.95},
-  {number: 3, title: 'Tom Yum', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 8.95},
-  {number: 4, title: 'Spring Roll', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 7.95},
-  {number: 5, title: 'Green Curry', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 14.95},
-  {number: 6, title: 'Bami mu daeng', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 9.95},
-  {number: 7, title: 'Pathongko', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 6.95},
-  {number: 8, title: 'Kaeng dok salae', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 3.95},
-  {number: 9, title: 'Kai tun ya chin', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 8.95},
-  {number: 10, title: 'Tom mara', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 2.95},
-  {number: 11, title: 'Nuea yang nam tok', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 24.95},
-  {number: 12, title: 'Som tam pu', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 12.95}
-];
+import seedData from '../data/seed.js';
 
 const BASE_URL = 'https://tiny-lasagna-server.herokuapp.com/collections/thai-orders';
 
@@ -91,6 +77,13 @@ class Homepage extends Component{
     console.log(this.state.phone);
   }
 
+  removeFromOrder = (index, e) => {
+    e.preventDefault();
+    let orders = this.state.orders;
+    orders.splice(index, 1);
+    this.setState((orders: orders))
+  }
+
   render(){
     let entreeItem = this.state.entrees.map((item, index) => {
       return(
@@ -100,7 +93,10 @@ class Homepage extends Component{
 
     let orderList = this.state.orders.map((item, index) => {
       return(
-        <p key={item.number} className='col-md-12 well order-per-item'>{item.title} - ${item.price}</p>
+        <div className='col-md-12 well order-per-item'>
+          <p key={item.number} className='col-md-10'>{item.title} - ${item.price}</p>
+          <button onClick={this.removeFromOrder.bind(this, index)} type="submit" className="btn btn-danger col-md-2">X</button>
+        </div>
       )
     })
 
