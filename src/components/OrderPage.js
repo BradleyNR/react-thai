@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-const BASE_URL = 'http://tiny-lasagna-server.herokuapp.com/collections/thai-orders';
+const BASE_URL = 'https://tiny-lasagna-server.herokuapp.com/collections/thai-orders';
 
 class OrderPage extends Component{
   constructor(props){

@@ -16,7 +16,7 @@ let seedData = [
   {number: 12, title: 'Som tam pu', description: 'Thai rice noodle dish with egg, tofu, bean sprouts, and peanuts', price: 12.95}
 ];
 
-const BASE_URL = 'http://tiny-lasagna-server.herokuapp.com/collections/thai-orders';
+const BASE_URL = 'https://tiny-lasagna-server.herokuapp.com/collections/thai-orders';
 
 class Homepage extends Component{
   constructor(props){
