@@ -26,9 +26,9 @@ body {
 
 h1.main-header-title {
   text-align: center;
-  font-family: cursive;
+  font-family: 'Candara';
   color: white;
-  font-size: 130px;
+  font-size: 140px;
   text-shadow: -1px 0 black, 0 4px black, 4px 0 black, 0 -1px black;
 }
 
